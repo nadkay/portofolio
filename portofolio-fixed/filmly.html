@@ -7,8 +7,8 @@
   <title>Filmly Movie Platform — Nadia Kayla Dhinita</title>
   <script>
     (function () {
-      var t = 'light';
-      try { t = localStorage.getItem('nadia-portfolio-theme') === 'dark' ? 'dark' : 'light'; } catch (e) {}
+      var t = 'dark';
+      try { t = localStorage.getItem('nadia-portfolio-theme') === 'light' ? 'light' : 'dark'; } catch (e) {}
       document.documentElement.setAttribute('data-theme', t);
     })();
   </script>
@@ -60,6 +60,15 @@
     footer .wrap { display:flex; justify-content:space-between; gap:20px; }
     @media (max-width:700px) { .wrap { width:min(100% - 28px,1120px); } nav { min-height:66px; } main { padding:58px 0 70px; } .gallery { gap:13px; margin-top:40px; } .gallery-card { grid-column:span 12; } .gallery-card img { height:250px; }
       .gallery-card:only-child img { height:300px; } footer .wrap { flex-direction:column; gap:4px; } }
+    @media (max-width:700px) {
+      nav { flex-wrap:wrap; min-height:0; padding:12px 0; row-gap:12px; }
+      .nav-actions { display:contents; }
+      .brand { order:1; }
+      .fx-sound-toggle { order:2; margin-left:auto; }
+      .theme-toggle { order:2; margin-left:8px; }
+      .back-link { order:3; width:100%; justify-content:center; padding:11px 16px; border:1px solid var(--line); border-radius:999px; color:var(--ink); background:var(--card); font-size:.86rem; }
+      .back-link:hover { background:var(--sky-soft); }
+    }
   </style>
 </head>
 <body>
