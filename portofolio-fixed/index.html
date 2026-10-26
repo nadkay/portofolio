@@ -949,7 +949,7 @@
       osc.connect(gain).connect(clickCtx.destination);
       osc.start(t); osc.stop(t + .13);
     };
-    $$('.button.primary, .contact-box .button, header button, header .nav-cta, header .nav-links a').forEach((el) => el.addEventListener('click', playClick, { passive: true }));
+    /* Suara klik & transisi ditangani fx.js */
 
     /* ---------- Intro ---------- */
     const intro = $('#site-intro');
@@ -1630,5 +1630,6 @@
     setLang(lang, false);
   })();
   </script>
+  <script src="fx.js" defer></script>
 </body>
 </html>
