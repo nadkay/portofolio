@@ -5,9 +5,22 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="description" content="AIS Marine corporate website — project case study Nadia Kayla Dhinita" />
   <title>AIS Marine Corporate Website — Nadia Kayla Dhinita</title>
+  <script>
+    (function () {
+      var t = 'light';
+      try { t = localStorage.getItem('nadia-portfolio-theme') === 'dark' ? 'dark' : 'light'; } catch (e) {}
+      document.documentElement.setAttribute('data-theme', t);
+    })();
+  </script>
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500;600;700;800&display=swap');
-    :root { --ink:#213957; --muted:#71869c; --paper:#fbfdff; --line:#dfebf5; --blue:#73b5ef; --blue-dark:#4e8fcb; --sky:#b8e1ff; --sky-soft:#f0faff; --lavender:#e7f1ff; }
+    :root { --ink:#213957; --muted:#71869c; --paper:#fbfdff; --line:#dfebf5; --blue:#73b5ef; --blue-dark:#4e8fcb; --sky:#b8e1ff; --sky-soft:#f0faff; --lavender:#e7f1ff; --card:#ffffff; --on-sky:#213957; --header-bg:rgba(251,253,255,.86); --note-border:rgba(184,225,255,.9); --shadow:0 20px 60px rgba(23,43,90,.12); --shadow-card:0 13px 32px rgba(34,71,111,.07); color-scheme:light; }
+    :root[data-theme="dark"] { --ink:#e7f3ff; --muted:#a8bdd0; --paper:#0d1724; --line:#233b53; --blue:#8bc8ff; --blue-dark:#8bc8ff; --sky:#b8e1ff; --sky-soft:#172b40; --lavender:#1b3047; --card:#142335; --on-sky:#0d1724; --header-bg:rgba(13,23,36,.84); --note-border:rgba(139,200,255,.22); --shadow:0 20px 60px rgba(0,0,0,.35); --shadow-card:0 13px 32px rgba(0,0,0,.25); color-scheme:dark; }
+    body { transition:background .3s ease, color .3s ease; }
+    .theme-toggle { display:inline-grid; place-items:center; width:40px; height:40px; padding:0; border:1px solid var(--line); border-radius:50%; color:var(--ink); background:var(--card); cursor:pointer; transition:transform .2s ease, border-color .2s ease; }
+    .theme-toggle:hover { transform:translateY(-2px); border-color:var(--blue); }
+    .theme-toggle-icon { font-size:1.15rem; line-height:1; font-family:"Apple Color Emoji","Segoe UI Emoji","Noto Color Emoji",sans-serif; }
+    .nav-actions { display:flex; align-items:center; gap:12px; }
     * { box-sizing:border-box; }
     html { scroll-behavior:smooth; scroll-padding-top:84px; }
     body { margin:0; color:var(--ink); background:var(--paper); font-family:"Open Sans",ui-sans-serif,system-ui,sans-serif; line-height:1.6; }
@@ -16,10 +29,10 @@
     .skip-link { position:fixed; top:10px; left:14px; z-index:10; padding:10px 14px; border-radius:999px; color:#fff; background:var(--ink); font-size:.82rem; font-weight:800; transform:translateY(-160%); transition:transform .2s ease; }
     .skip-link:focus { transform:translateY(0); }
     .wrap { width:min(1120px,calc(100% - 40px)); margin:auto; }
-    header { position:sticky; top:0; z-index:5; border-bottom:1px solid rgba(223,235,245,.9); background:rgba(251,253,255,.86); backdrop-filter:blur(16px); }
+    header { position:sticky; top:0; z-index:5; border-bottom:1px solid rgba(223,235,245,.9); background:var(--header-bg); backdrop-filter:blur(16px); }
     nav { display:flex; align-items:center; justify-content:space-between; min-height:76px; }
     .brand { display:flex; align-items:center; gap:11px; font-weight:900; letter-spacing:-.03em; }
-    .brand-mark { display:grid; place-items:center; width:36px; height:36px; color:#fff; background:var(--ink); border-radius:12px; font-size:.85rem; }
+    .brand-mark { display:grid; place-items:center; width:36px; height:36px; color:var(--paper); background:var(--ink); border-radius:12px; font-size:.85rem; }
     .back-link, .button { display:inline-flex; align-items:center; gap:8px; color:var(--blue-dark); font-size:.88rem; font-weight:800; }
     .back-link:hover { color:var(--ink); }
     main { padding:86px 0 100px; }
@@ -30,7 +43,7 @@
     .project-meta { display:flex; flex-wrap:wrap; gap:10px; margin-top:27px; }
     .meta-chip { padding:8px 13px; border:1px solid var(--line); border-radius:999px; color:var(--blue-dark); background:var(--sky-soft); font-size:.78rem; font-weight:800; }
     .case-grid { display:grid; grid-template-columns:1.12fr .88fr; gap:28px; align-items:start; margin-top:58px; }
-    .evidence { overflow:hidden; padding:10px; border:1px solid var(--line); border-radius:20px; background:#fff; box-shadow:0 13px 32px rgba(34,71,111,.07); }
+    .evidence { overflow:hidden; padding:10px; border:1px solid var(--line); border-radius:20px; background:var(--card); box-shadow:var(--shadow-card); }
     .evidence a { display:block; overflow:hidden; border-radius:14px; background:var(--lavender); }
     .evidence img { display:block; width:100%; height:auto; max-height:620px; object-fit:cover; object-position:center; transition:transform .35s ease; }
     .evidence:hover img { transform:scale(1.015); }
@@ -39,9 +52,9 @@
     .copy p, .copy li { color:var(--muted); }
     .copy ul { margin:18px 0 0; padding-left:19px; }
     .copy li + li { margin-top:10px; }
-    .note { margin-top:28px; padding:20px 22px; border:1px solid rgba(184,225,255,.9); border-radius:18px; color:var(--muted); background:var(--sky-soft); }
+    .note { margin-top:28px; padding:20px 22px; border:1px solid var(--note-border); border-radius:18px; color:var(--muted); background:var(--sky-soft); }
     .actions { display:flex; flex-wrap:wrap; gap:12px; margin-top:28px; }
-    .button { padding:11px 15px; border-radius:999px; color:var(--ink); background:var(--sky); }
+    .button { padding:11px 15px; border-radius:999px; color:var(--on-sky); background:var(--sky); }
     .button:hover { color:#fff; background:var(--blue-dark); }
     footer { padding:27px 0; border-top:1px solid var(--line); color:var(--muted); font-size:.82rem; }
     footer .wrap { display:flex; justify-content:space-between; gap:20px; }
@@ -50,7 +63,7 @@
 </head>
 <body>
   <a class="skip-link" href="#main-content">Lewati ke konten utama</a>
-  <header><nav class="wrap"><a class="brand" href="index.html"><span class="brand-mark">NK</span><span>Nadia Kayla</span></a><a class="back-link" href="index.html#projects">← Kembali ke karya</a></nav></header>
+  <header><nav class="wrap"><a class="brand" href="index.html"><span class="brand-mark">NK</span><span>Nadia Kayla</span></a><div class="nav-actions"><a class="back-link" href="index.html#projects">← Kembali ke karya</a><button class="theme-toggle" type="button" aria-label="Aktifkan mode gelap" title="Mode gelap"><span class="theme-toggle-icon" aria-hidden="true">☀️</span></button></div></nav></header>
   <main id="main-content"><div class="wrap">
     <span class="eyebrow">Project case study · Website maintenance & SEO</span>
     <h1>AIS Marine corporate website</h1>
@@ -63,5 +76,24 @@
     <p class="note">Bukti visual menampilkan section Our Journey yang dikerjakan pada website AIS Marine. Klik gambar untuk membukanya dalam ukuran penuh.</p>
   </div></main>
   <footer><div class="wrap"><span>© 2026 Nadia Kayla Dhinita</span><span>AIS Marine · Project case study</span></div></footer>
+  <script>
+    (function () {
+      var root = document.documentElement, btn = document.querySelector('.theme-toggle');
+      function apply(dark) {
+        root.setAttribute('data-theme', dark ? 'dark' : 'light');
+        btn.querySelector('.theme-toggle-icon').textContent = dark ? '🌙' : '☀️';
+        btn.setAttribute('aria-label', dark ? 'Aktifkan mode terang' : 'Aktifkan mode gelap');
+        btn.setAttribute('title', dark ? 'Mode terang' : 'Mode gelap');
+        var m = document.querySelector('meta[name="theme-color"]');
+        if (m) m.setAttribute('content', dark ? '#0d1724' : '#d6dee6');
+      }
+      apply(root.getAttribute('data-theme') === 'dark');
+      btn.addEventListener('click', function () {
+        var dark = root.getAttribute('data-theme') !== 'dark';
+        apply(dark);
+        try { localStorage.setItem('nadia-portfolio-theme', dark ? 'dark' : 'light'); } catch (e) {}
+      });
+    })();
+  </script>
 </body>
 </html>

@@ -204,6 +204,34 @@
     .hero-proof strong { display: block; font-size: 1rem; line-height: 1.2; letter-spacing: -.03em; }
     .hero-proof span.proof-label { display: block; color: var(--muted); font-size: .64rem; font-weight: 800; letter-spacing: .08em; text-transform: uppercase; }
 
+    /* Hero motion: masuk bertahap setelah intro, plus gerak ambient */
+    .js:not(.skip-intro) .hero { --hero-delay: 1.85s; }
+    .js .hero { --hero-delay: 0s; }
+    .hero-content > * { animation: hero-rise 1s cubic-bezier(.2,.75,.25,1) both; animation-delay: calc(var(--hero-delay) + var(--d, 0s)); }
+    .hero-content > .availability-badge { --d: .05s; }
+    .hero-content > h1 { --d: .18s; }
+    .hero-content > .hero-kicker { --d: .34s; }
+    .hero-content > .hero-description { --d: .44s; }
+    .hero-content > .actions { --d: .56s; }
+    .hero-content > .hero-proof { --d: .7s; }
+    .hero-content > .hero-proof::after { content: ""; position: absolute; inset: 0; border-radius: inherit; background: linear-gradient(110deg, transparent 35%, rgba(255,255,255,.38) 50%, transparent 65%); transform: translateX(-120%); animation: hero-sheen 4.2s ease-in-out calc(var(--hero-delay) + 1.6s) infinite; pointer-events: none; }
+    .hero-content > .hero-proof { position: relative; overflow: hidden; }
+    .hero-road { animation: hero-road-in 1.4s cubic-bezier(.2,.75,.25,1) both; animation-delay: var(--hero-delay); }
+    .hero-sun { animation: hero-sun-float 9s ease-in-out infinite, hero-fade 1.2s ease both; animation-delay: 0s, var(--hero-delay); }
+    .hero::before { animation: hero-drift 16s ease-in-out infinite alternate; }
+    .availability-badge::before { animation: hero-ping 2.2s ease-out infinite; }
+    .hero-kicker span { animation: hero-spin 9s linear infinite; }
+    .hero h1 em { display: inline-block; animation: hero-rise 1s cubic-bezier(.2,.75,.25,1) both, hero-tilt 6s ease-in-out calc(var(--hero-delay) + 1.2s) infinite; animation-delay: calc(var(--hero-delay) + .3s), calc(var(--hero-delay) + 1.2s); }
+    @keyframes hero-rise { from { opacity: 0; transform: translateY(26px); filter: blur(6px); } to { opacity: 1; transform: none; filter: none; } }
+    @keyframes hero-fade { from { opacity: 0; } to { opacity: 1; } }
+    @keyframes hero-road-in { from { opacity: 0; transform: translateY(40px); } to { opacity: 1; transform: none; } }
+    @keyframes hero-sun-float { 0%, 100% { transform: translateY(0) scale(1); } 50% { transform: translateY(14px) scale(1.04); } }
+    @keyframes hero-drift { from { transform: translateX(-2.5%); } to { transform: translateX(2.5%); } }
+    @keyframes hero-ping { 0% { box-shadow: 0 0 0 0 rgba(85,197,154,.45); } 70%, 100% { box-shadow: 0 0 0 9px rgba(85,197,154,0); } }
+    @keyframes hero-spin { to { transform: rotate(360deg); } }
+    @keyframes hero-tilt { 0%, 100% { transform: translateY(0) rotate(0deg); } 50% { transform: translateY(-3px) rotate(-.6deg); } }
+    @keyframes hero-sheen { 0%, 55%, 100% { transform: translateX(-120%); } 85% { transform: translateX(120%); } }
+
     /* Mini game */
     .hero-game { position: absolute; z-index: 2; inset: 0; pointer-events: none; }
     .game-car { position: absolute; bottom: 3%; left: calc(var(--road-center) + var(--car-x, 0px)); width: 58px; height: 112px; border: 3px solid #213957; border-radius: 28px 28px 18px 18px; background: linear-gradient(90deg, #3f7fb8 0%, #73b5ef 48%, #b8e1ff 100%); box-shadow: 0 14px 0 rgba(33,57,87,.2), 0 17px 23px rgba(33,57,87,.25); transform: translateX(-50%) translateY(var(--car-y, 0px)) rotate(var(--car-rotate, 0deg)) scale(var(--car-scale, 1)); transition: transform .08s linear; }
@@ -797,7 +825,6 @@
             <li><a href="certificates/dicoding-haskell.pdf" target="_blank" rel="noreferrer">Memulai Pemrograman dengan Haskell</a> — Dicoding, 2025.</li>
             <li><a href="certificates/dicoding-python.pdf" target="_blank" rel="noreferrer">Memulai Pemrograman dengan Python</a> — Dicoding, 2020.</li>
             <li><a href="certificates/inotech-40-pameran-karya.pdf" target="_blank" rel="noreferrer">INOTECH 40: Pameran Hasil Karya Mahasiswa</a> — Universitas Mercu Buana, 2025.</li>
-            <li><a href="certificates/pkm-2025-team-certificate.pdf" target="_blank" rel="noreferrer">Sertifikat Tim PKM 2025</a> — sertifikat kegiatan tim.</li>
             <li><a href="certificates/sync-cybersecurity-ethical-hacking.png" target="_blank" rel="noreferrer">Seminar Cybersecurity dan Ethical Hacking</a> — SYNC 2025.</li>
             <li><a href="certificates/sync-ai-masa-kini.png" target="_blank" rel="noreferrer">Seminar Tantangan AI Masa Kini</a> — SYNC 2025.</li>
             <li><a href="certificates/webinar-ai-ghostwriting.jpg" target="_blank" rel="noreferrer">Webinar Artificial Intelligence dan Ghostwriting</a> — International Journal Labs, 2024.</li>
@@ -1078,7 +1105,6 @@
       "Webinar Data Science dan Generative AI": "Data Science and Generative AI Webinar",
       "INOTECH 40: Pameran Hasil Karya Mahasiswa": "INOTECH 40: Student Work Exhibition",
       "— Universitas Mercu Buana, 2025.": "— Mercu Buana University, 2025.",
-      "Sertifikat Tim PKM 2025": "PKM 2025 Team Certificate",
       "— sertifikat kegiatan tim.": "— team activity certificate.",
       "Seminar Cybersecurity dan Ethical Hacking": "Cybersecurity and Ethical Hacking Seminar",
       "Seminar Tantangan AI Masa Kini": "Seminar: Today's AI Challenges",
